@@ -26,8 +26,8 @@ namespace NUnit.Tests1
             // out arguments
             var outString = "ack";
             // TryParse will return true, and the out argument will return "ack", lazy evaluated
-            mock.Setup(foo => foo.TryParse("ping", out outString)).Returns(true);
-
+            var result = mock.Setup(foo => foo.TryParse("ping", out outString)).Returns(true);
+            
 
             // ref arguments
             var instance = new Bar();
