@@ -1,0 +1,15 @@
+﻿开发window服务
+1：新建window服务项目
+2：添加安装程序
+   注意两点：Account的类型为LocalSystem
+             ServiceName:自己写
+
+安装window服务：
+1: 管理员打开 cmd
+2: 先进入 C:\Windows\Microsoft.NET\Framework\v4.0.30319
+3：C:\Windows\Microsoft.NET\Framework\v4.0.30319>InstallUtil.exe 【服务路径】
+4：安装成功的话 通过 services.msc命令查看最新安装的服务，启动它
+5：测试服务功能
+
+卸载window服务：
+C:\Windows\Microsoft.NET\Framework\v4.0.30319>InstallUtil.exe /u【服务路径】
