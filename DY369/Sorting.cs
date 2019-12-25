@@ -88,7 +88,12 @@ namespace DY369
             return array;
         }
 
-        //快速排序（目标数组，数组的起始位置，数组的结束位置）
+        /// <summary>
+        /// //快速排序（目标数组，数组的起始位置，数组的结束位置,等于最大值减一）
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
         public static void QuickSort(ref int[] nums, int left, int right)
         {
             if (left < right)
@@ -111,6 +116,76 @@ namespace DY369
                 QuickSort(ref  nums, left, i);
                 QuickSort(ref  nums, i + 1, right);
             }
+        }
+
+        /// <summary>
+        /// 归并排序--自己琢磨了半天写出来的归并排序算法，体会：很多东西必须理论上理解了才能清醒的写出来好的代码
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        public static int[] MergeSort(int[] array, int left, int right)
+        {
+            if (right == left)
+            {
+                return new[] {array[left]};
+            }
+            var middle = (left + right) / 2;
+            var l1 = new int[middle - left + 1];
+            var r1 = new int[right - middle];
+            
+            if (middle >= left)
+            {
+                l1 = MergeSort(array, left, middle);
+            }
+            if (middle < right)
+            {
+                r1 = MergeSort(array, middle+1,right);
+            }
+
+            //合并l1 和 r1
+            var newArray = new int[l1.Length+r1.Length];
+            int b = 0, m = 0,j = 0;
+
+            while (b < l1.Length && m < r1.Length)
+            {
+                if (l1[b] < r1[m])
+                {
+                    newArray[j] = l1[b];
+                    b++;
+                }
+                else if (l1[b] > r1[m])
+                {
+                    newArray[j] = r1[m];
+                    m++;
+                }
+                else
+                {
+                    newArray[j] = l1[b];
+                    b++;
+                    newArray[j] = r1[m];
+                    m++;
+                }
+                j++;
+            }
+
+            if (b == l1.Length && m < r1.Length)
+            {
+                for (var i = m; i < r1.Length; i++)
+                {
+                    newArray[j] = r1[i];
+                    j++;
+                }
+            }
+            if (m == r1.Length && b < l1.Length)
+            {
+                for (var i = b; i < l1.Length; i++)
+                {
+                    newArray[j] = l1[i];
+                    j++;
+                }
+            }
+            return newArray;
         }
 
         /// <summary>

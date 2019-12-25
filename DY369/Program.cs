@@ -6,18 +6,86 @@ using System.Threading.Tasks;
 
 namespace DY369
 {
+    struct Books
+    {
+        public string title;
+        public string author;
+        public string subject;
+        public int book_id;
+    }
     class Program
     {
         static void Main(string[] args)
         {
+            #region 改变结构体
+
+            Books Book1;
+            Book1.title = "C Programming";
+            Book1.author = "Nuha Ali";
+            Book1.subject = "C Programming Tutorial";
+            Book1.book_id = 6495407;
+
+            ChangeBooks(Book1);
+
+            #endregion
+
+            var str = "xxx";
+            ChangeStr(str);
+            Console.WriteLine(str);
+
+            int i = 0;
+            ChangeI(i);
+            Console.WriteLine(i);
+
             var list = new int[]
             {
                 7,8,9,10,1,2,5,6,13,15
             };
 
-            FindPairTwo(list,9);
+            ChangeArray(list);
+            Console.WriteLine(list.ToString());
+
+
+            var newArray = Sorting.MergeSort(list,0,list.Length-1);
             Console.ReadKey();
         }
+
+        static void ChangeBooks(Books book)
+        {
+            book.author = "chenchang";
+        }
+
+        /// <summary>
+        /// 泛型约束
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        static void ChangeStruct<T>(T t) where T:struct 
+        {
+            
+        }
+
+        static void ChangeStr(string str)
+        {
+            str = "369";
+        }
+
+        static void ChangeI(int i)
+        {
+            i = 369;
+        }
+
+        /// <summary>
+        /// array即使元素是值类型，经过之后也会发生改变
+        /// </summary>
+        /// <param name="array"></param>
+        static void ChangeArray(int[] array)
+        {
+            array[0] = 369;
+            array[1] = 3369;
+        }
+
+
         static void FindPairTwo(int[] array, int sum)
         {
             //快速排序
