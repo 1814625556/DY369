@@ -228,5 +228,76 @@ namespace DY369
             }
         }
 
+        /// <summary>
+        /// 堆排序
+        /// </summary>
+        /// <param name="array"></param>
+        public static void HeapSort(int[] array)
+        {
+            BuildMaxHeap(array);    //创建大顶推（初始状态看做：整体无序）
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                Swap(ref array[0], ref array[i]); //将堆顶元素依次与无序区的最后一位交换（使堆顶元素进入有序区）
+                MaxHeapify(array, 0, i); //重新将无序区调整为大顶堆
+            }
+        }
+
+        /// <summary>
+        /// 堆排序，核心思想构建大顶堆
+        /// 根节点在属组中的下标如果是 i 那个左右子节点在数组中的下标就是 2*i +1 和 2*i +2,满足条件就是 
+        /// array[i] > array[2i+1] && array[i] > array[2i+2]
+        /// </summary>
+        /// <param name="array"></param>
+        public static void BuildMaxHeap(int[] array)
+        {
+            if (array?.Length < 2) return;
+
+            for (var i = (array.Length / 2 -1); i >= 0; i--)
+            {
+                MaxHeapify(array,i,array.Length);
+            }
+
+        }
+
+        /// <summary>
+        /// 大顶堆调整，调整的核心就是保证 currentIndex节点 的二叉树是大顶堆,由于是自底往上排序所以
+        /// 只需要递归变化的部分，因为没变化的一开始就调整好了
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="currentIndex"></param>
+        /// <param name="heapSize"></param>
+        private static void MaxHeapify(int[] array, int currentIndex, int heapSize)
+        {
+            int left = 2 * currentIndex + 1;    //左子节点在数组中的位置
+            int right = 2 * currentIndex + 2;   //右子节点在数组中的位置
+            int large = currentIndex;   //记录此根节点、左子节点、右子节点 三者中最大值的位置
+
+            if (left < heapSize && array[left] > array[large])  //与左子节点进行比较
+            {
+                large = left;
+            }
+            if (right < heapSize && array[right] > array[large])    //与右子节点进行比较
+            {
+                large = right;
+            }
+            if (currentIndex != large)  //如果 currentIndex != large 则表明 large 发生变化（即：左右子节点中有大于根节点的情况）
+            {
+                Swap(ref array[currentIndex], ref array[large]);    //将左右节点中的大者与根节点进行交换（即：实现局部大顶堆）
+                MaxHeapify(array, large, heapSize); //以上次调整动作的large位置（为此次调整的根节点位置），进行递归调整
+            }
+        }
+        ///<summary>
+        /// 交换函数
+        ///</summary>
+        ///<param name="a">元素a</param>
+        ///<param name="b">元素b</param>
+        private static void Swap(ref int a, ref int b)
+        {
+            int temp = 0;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+
     }
 }

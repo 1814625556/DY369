@@ -17,30 +17,12 @@ namespace DY369
     {
         static void Main(string[] args)
         {
-            #region 改变结构体
-
-            Books Book1;
-            Book1.title = "C Programming";
-            Book1.author = "Nuha Ali";
-            Book1.subject = "C Programming Tutorial";
-            Book1.book_id = 6495407;
-
-            ChangeBooks(Book1);
-
-            #endregion
-
-            var str = "xxx";
-            ChangeStr(str);
-            Console.WriteLine(str);
-
-            int i = 0;
-            ChangeI(i);
-            Console.WriteLine(i);
-
             var list = new int[]
             {
-                7,8,9,10,1,2,5,6,13,15
+                7,8,9,10,17,2,5,6,13,15
             };
+
+            Sorting.HeapSort(list);
 
             ChangeArray(list);
             Console.WriteLine(list.ToString());
@@ -49,7 +31,6 @@ namespace DY369
             var newArray = Sorting.MergeSort(list,0,list.Length-1);
             Console.ReadKey();
         }
-
         static void ChangeBooks(Books book)
         {
             book.author = "chenchang";
