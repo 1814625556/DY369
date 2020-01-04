@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -299,5 +301,94 @@ namespace DY369
             b = temp;
         }
 
+        #region
+        /// <summary>
+        /// 动态规划法 求解背包问题
+        /// </summary>
+        public static void DynamicMethod()
+        {
+            var list = new List<Item>()
+            {
+                new Item(){Weight = 1,Value = 2},
+                new Item(){Weight = 2,Value = 3},
+                new Item(){Weight = 3,Value = 4},
+                new Item(){Weight = 4,Value = 5},
+                new Item(){Weight = 5,Value = 6},
+                new Item(){Weight = 6,Value = 7},
+                new Item(){Weight = 7,Value = 8},
+                new Item(){Weight = 8,Value = 9},
+            };
+            var maxValue = DynamicPlanMethod(list,20);
+        }
+
+        public static int DynamicPlanMethod(List<Item> list, int maxWeight)
+        {
+            if (maxWeight == 0 || list.Count == 0) return 0;
+
+            //保存所有结果的二维数组,二维数组的赋值方式是按行赋值
+            var arr = new int[list.Count,maxWeight+1];
+
+            for (var row = 0; row < list.Count; row++)
+            {
+                for (var weight = 0; weight <= maxWeight; weight++)
+                {
+                    if (weight == 0)
+                    {
+                        arr[row, weight] = 0;
+                        continue;
+                    }
+
+                    if (weight < list[row].Weight && arr[row, weight-1] >
+                        list[row].Value + ColumnMax(arr, weight - list[row].Weight))
+                    {
+                        arr[row, weight] = arr[row, maxWeight-1];
+                    }
+                    else
+                    {
+                        arr[row, weight] = list[row].Value + ColumnMax(arr, maxWeight - list[row].Weight);
+                    }
+                }
+            }
+
+            Console.Write("I/W");
+            for (var i = 0; i <= maxWeight; i++)
+            {
+                Console.Write($"\t{i}");
+            }
+            Console.WriteLine();
+            for (var i = 0; i < list.Count; i++)
+            {
+                Console.Write($"row{i}: ");
+                for (var j = 0; j <= maxWeight; j++)
+                {
+                    Console.Write($"\t{arr[i, j]}");
+                }
+                Console.WriteLine();
+            }
+
+            return 0;
+        }
+
+        public static int ColumnMax(int[,] arr, int column)
+        {
+            if (column < 0) return 0;
+
+            var max = arr[0, 0];
+            for (var i = 1; i < arr.GetLength(0); i++)
+            {
+                if (max < arr[i, column])
+                {
+                    max = arr[i, column];
+                }
+            }
+            return max;
+        }
+
+        public class Item
+        {
+            public int Weight { get; set; }
+            public int Value { get; set; }
+        }
+        #endregion
     }
 }

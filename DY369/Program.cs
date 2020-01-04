@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DY369
@@ -17,18 +18,8 @@ namespace DY369
     {
         static void Main(string[] args)
         {
-            var list = new int[]
-            {
-                7,8,9,10,17,2,5,6,13,15
-            };
-
-            Sorting.HeapSort(list);
-
-            ChangeArray(list);
-            Console.WriteLine(list.ToString());
-
-
-            var newArray = Sorting.MergeSort(list,0,list.Length-1);
+            Console.ReadKey();
+            Sorting.DynamicMethod();
             Console.ReadKey();
         }
         static void ChangeBooks(Books book)
