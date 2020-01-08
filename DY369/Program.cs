@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DY369.leetcode;
 
 namespace DY369
 {
@@ -18,10 +19,30 @@ namespace DY369
     {
         static void Main(string[] args)
         {
-            Console.ReadKey();
-            Sorting.DynamicMethod();
+            DeleteNum.LastRemaining(10);
             Console.ReadKey();
         }
+
+        /// <summary>
+        /// 测试最小栈
+        /// </summary>
+        static void TestMinStack()
+        {
+            MinStack miniStack = new MinStack();
+
+            miniStack.Push(30);
+            miniStack.Push(300);
+            miniStack.Push(38);
+            miniStack.Push(3);
+            miniStack.Push(-3);
+
+
+            var min = miniStack.GetMin();
+            miniStack.Pop();
+            miniStack.Pop();
+            min = miniStack.GetMin();
+        }
+
         static void ChangeBooks(Books book)
         {
             book.author = "chenchang";
