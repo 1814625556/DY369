@@ -76,9 +76,12 @@
     <Compile Include="Animal.cs" />
     <Compile Include="AsyncAwaitDemo.cs" />
     <Compile Include="BinaryTree.cs" />
+    <Compile Include="leetcode\BBS.cs" />
+    <Compile Include="leetcode\CanWinNim.cs" />
     <Compile Include="leetcode\DeleteNum.cs" />
     <Compile Include="leetcode\MiniStack.cs" />
     <Compile Include="leetcode\ReverseInt.cs" />
+    <Compile Include="leetcode\ThreadFoo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackTree.cs" />

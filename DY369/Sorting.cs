@@ -12,7 +12,7 @@ namespace DY369
     {
         
         /// <summary>
-        /// 插入排序优化方案
+        /// 插入排序优化方案 O(n2) 稳定算法
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace DY369
         }
 
         /// <summary>
-        /// 暴力美学，冒泡排序算法
+        /// 暴力美学，冒泡排序算法 O(n2) 稳定
         /// </summary>
         /// <param name="array"></param>
         public static int[] BubbleSort(int[] array)
@@ -63,7 +63,7 @@ namespace DY369
         }
 
         /// <summary>
-        /// 选择排序
+        /// 选择排序 数组 不稳定，链表 稳定 O(n2)
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace DY369
 
         /// <summary>
         /// 归并排序--自己琢磨了半天写出来的归并排序算法，体会：很多东西必须理论上理解了才能清醒的写出来好的代码
-        /// </summary>
+        /// </summary> O(n log [2]n)
         /// <param name="array"></param>
         /// <param name="left"></param>
         /// <param name="right"></param>
@@ -231,7 +231,7 @@ namespace DY369
         }
 
         /// <summary>
-        /// 堆排序
+        /// 堆排序 O(n log n)
         /// </summary>
         /// <param name="array"></param>
         public static void HeapSort(int[] array)

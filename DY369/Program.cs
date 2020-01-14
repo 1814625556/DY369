@@ -19,7 +19,10 @@ namespace DY369
     {
         static void Main(string[] args)
         {
-            DeleteNum.LastRemaining(10);
+            var node = BBS.GeneralNode();
+            var arr = new List<int>();
+            BBS.GeneralBBSarr(new List<TreeNode>() {node}, ref arr);
+            var flag = BBS.GeneralBBSarrCritical(new List<TreeNode>(){node});
             Console.ReadKey();
         }
 

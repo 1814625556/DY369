@@ -53,5 +53,27 @@ namespace DY369.leetcode
             if (x < 0) return (int)rs * (-1);
             return (int)rs;
         }
+
+        /// <summary>
+        /// 堆栈方式
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static int Reverse3(int x)
+        {
+            var str = x < 0 ? x.ToString().Substring(1) : x.ToString();
+            Stack<char> st = new Stack<char>();
+            for (var i = 0; i < str.Length; i++)
+                st.Push(str[i]);
+
+            var rsStr = "";
+            for (var i = 0; i < str.Length; i++)
+                rsStr += st.Pop();
+
+            long result = x < 0 ? Convert.ToInt64(rsStr)*(-1) : Convert.ToInt64(rsStr);
+            if (result > Math.Pow(2, 31) - 1 || result < (-1) * Math.Pow(2, 31))
+                return 0;
+            return x < 0 ? Convert.ToInt32(rsStr) * (-1) : Convert.ToInt32(rsStr);
+        }
     }
 }
